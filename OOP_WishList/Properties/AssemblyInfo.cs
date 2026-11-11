@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OOP_WishList")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("My Wishlist Planner")]
+[assembly: AssemblyDescription("A personal wishlist tracker")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OOP_WishList")]
+[assembly: AssemblyCompany("My Company")]
+[assembly: AssemblyProduct("My Wishlist Planner")]
 [assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

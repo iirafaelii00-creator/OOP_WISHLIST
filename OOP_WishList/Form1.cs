@@ -6,11 +6,11 @@ using MySql.Data.MySqlClient;
 
 namespace OOP_WishList
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         string connectionString = "server=localhost;database=wishlist_db;uid=root;pwd=;";
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             LoadWishlist();
@@ -44,36 +44,36 @@ namespace OOP_WishList
 
                     adapter.Fill(table);
 
-                    dataGridView1.DataSource = table;
+                    dgvWishlist.DataSource = table;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Database Error: " + ex.Message);
+                MessageBox.Show("Unable to load your wishlist right now. Please check the database connection.\n\n" + ex.Message);
             }
         }
 
        
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAddWish_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-                string.IsNullOrWhiteSpace(textBox2.Text) ||
-                string.IsNullOrWhiteSpace(textBox3.Text) ||
-                string.IsNullOrWhiteSpace(textBox4.Text) ||
-                string.IsNullOrWhiteSpace(textBox5.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                string.IsNullOrWhiteSpace(txtItem1.Text) ||
+                string.IsNullOrWhiteSpace(txtItem1Price.Text) ||
+                string.IsNullOrWhiteSpace(txtItem2.Text) ||
+                string.IsNullOrWhiteSpace(txtItem2Price.Text))
             {
-                MessageBox.Show("Please fill in all fields.");
+                MessageBox.Show("Please complete every field before saving your wishlist item.");
                 return;
             }
 
             decimal price1;
             decimal price2;
 
-            if (!decimal.TryParse(textBox3.Text, out price1) ||
-                !decimal.TryParse(textBox5.Text, out price2) ||
+            if (!decimal.TryParse(txtItem1Price.Text, out price1) ||
+                !decimal.TryParse(txtItem2Price.Text, out price2) ||
                 price1 < 0 || price2 < 0)
             {
-                MessageBox.Show("Please enter valid prices.");
+                MessageBox.Show("Please enter valid prices for both items.");
                 return;
             }
 
@@ -90,53 +90,53 @@ namespace OOP_WishList
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@name", textBox1.Text.Trim());
-                        cmd.Parameters.AddWithValue("@item1", textBox2.Text.Trim());
+                        cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@item1", txtItem1.Text.Trim());
                         cmd.Parameters.AddWithValue("@price1", price1);
-                        cmd.Parameters.AddWithValue("@item2", textBox4.Text.Trim());
+                        cmd.Parameters.AddWithValue("@item2", txtItem2.Text.Trim());
                         cmd.Parameters.AddWithValue("@price2", price2);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
 
-                MessageBox.Show("Wishlist added successfully!");
+                MessageBox.Show("Your wishlist item was saved successfully!");
 
                 LoadWishlist();
 
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                textBox4.Clear();
-                textBox5.Clear();
+                txtName.Clear();
+                txtItem1.Clear();
+                txtItem1Price.Clear();
+                txtItem2.Clear();
+                txtItem2Price.Clear();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Insert Error: " + ex.Message);
+                MessageBox.Show("There was a problem saving your item.\n\n" + ex.Message);
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void txtItem1_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void txtItem1Price_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void txtItem2_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void textBox5_TextChanged(object sender, EventArgs e)
+        private void txtItem2Price_TextChanged(object sender, EventArgs e)
         {
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvWishlist_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
         }
     }
