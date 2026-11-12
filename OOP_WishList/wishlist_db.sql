@@ -42,7 +42,7 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`id`, `name`, `item1`, `item1_price`, `item2`, `item2_price`, `total`) VALUES
-(1, 'Heaven', 'GTA 6', 500.15, 'Tryhackme Subscription', 2000.10, 0.00);
+(1, 'Rafael', 'Iphone Duo', 300000.15, 'Netflix Subscription', 500.10, 0.00);
 
 --
 -- Indexes for dumped tables
